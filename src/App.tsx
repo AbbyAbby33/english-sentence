@@ -43,7 +43,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ 
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
 	}),
-	marginLeft: `-${drawerWidth}px`,
+	marginLeft: document.body.offsetWidth > 768 ? `-${drawerWidth}px` : 0,
 	...(open && {
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.easeOut,
@@ -59,8 +59,10 @@ const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open',
 		duration: theme.transitions.duration.leavingScreen,
 	}),
 	...(open && {
-		width: `calc(100% - ${drawerWidth}px)`,
-		marginLeft: `${drawerWidth}px`,
+		width: document.body.offsetWidth > 768 ? `calc(100% - ${drawerWidth}px)` : '100%',
+		marginLeft: document.body.offsetWidth > 768 ? `-${drawerWidth}px` : 0,
+		// width: `calc(100% - ${drawerWidth}px)`,
+		// marginLeft: `${drawerWidth}px`,
 		transition: theme.transitions.create(['margin', 'width'], {
 			easing: theme.transitions.easing.easeOut,
 			duration: theme.transitions.duration.enteringScreen,
@@ -89,7 +91,9 @@ function App() {
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 
+	/** 菜單收合 */
 	const handleDrawerToggle = () => {
+		console.log('document.body.offsetWidth', document.body.offsetWidth);
 		setOpen(!open);
 	};
 
