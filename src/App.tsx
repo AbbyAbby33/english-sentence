@@ -3,7 +3,8 @@ import './App.css';
 
 // mui
 import { styled, useTheme } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
+// import AppBar from '@mui/material/AppBar';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -31,6 +32,42 @@ import NoMatch from './content/NoMatch/pages/NoMatch';
 
 const drawerWidth = 240;
 
+interface AppBarProps extends MuiAppBarProps {
+	open?: boolean;
+}
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ open?: boolean; }>(({ theme, open }) => ({
+	flexGrow: 1,
+	padding: theme.spacing(3),
+	transition: theme.transitions.create('margin', {
+		easing: theme.transitions.easing.sharp,
+		duration: theme.transitions.duration.leavingScreen,
+	}),
+	marginLeft: `-${drawerWidth}px`,
+	...(open && {
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+		marginLeft: 0,
+	}),
+}));
+
+const AppBar = styled(MuiAppBar, { shouldForwardProp: (prop) => prop !== 'open', })<AppBarProps>(({ theme, open }) => ({
+	transition: theme.transitions.create(['margin', 'width'], {
+		easing: theme.transitions.easing.sharp,
+		duration: theme.transitions.duration.leavingScreen,
+	}),
+	...(open && {
+		width: `calc(100% - ${drawerWidth}px)`,
+		marginLeft: `${drawerWidth}px`,
+		transition: theme.transitions.create(['margin', 'width'], {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	}),
+}));
+
 const DrawerHeader = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
@@ -54,7 +91,7 @@ function App() {
 
 	const handleDrawerToggle = () => {
 		setOpen(!open);
-	};	
+	};
 
 	const drawer = (
 		<List>
@@ -76,9 +113,10 @@ function App() {
 
 	return (
 		<div>
+
 			{/* header */}
 			<Box sx={{ flexGrow: 1 }}>
-				<AppBar position="static">
+				<AppBar position="fixed" open={open}>
 					<Toolbar>
 						<IconButton
 							size="large"
@@ -122,7 +160,7 @@ function App() {
 			</Drawer>
 
 			{/* content */}
-			<Box>
+			<Main open={open}>
 				<Routes>
 					<Route path="/" element={<SentenceLearning />} />
 					<Route path="sentence-learning" element={<SentenceLearning />} />
@@ -130,7 +168,7 @@ function App() {
 					<Route path="menu-matain" element={<MenuMatain />} />
 					<Route path="*" element={<NoMatch />} />
 				</Routes>
-			</Box>
+			</Main>
 		</div>
 	);
 }
