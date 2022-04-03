@@ -22,6 +22,13 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CreateIcon from '@mui/icons-material/Create';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
+// router & pages
+import { NavLink, Route, Routes } from 'react-router-dom';
+import SentenceLearning from './content/SentenceLearning/pages/SentenceLearning';
+import CreateSentence from './content/CreateSentence/pages/CreateSentence';
+import MenuMatain from './content/MenuMatain/pages/MenuMatain';
+import NoMatch from './content/NoMatch/pages/NoMatch';
+
 const drawerWidth = 240;
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -34,20 +41,22 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const menuList = [
-	{ id: '0', name: '句子學習', icon: <MenuBookIcon /> }, // sentence learning
-	{ id: '1', name: '新增句子', icon: <CreateIcon /> }, // create sentence
-	{ id: '2', name: '目錄維護', icon: <LibraryBooksIcon /> }, // menu matain
+	{ id: '0', name: '句子學習', link: 'sentence-learning', icon: <MenuBookIcon /> },
+	{ id: '1', name: '新增句子', link: 'create-sentence', icon: <CreateIcon /> },
+	{ id: '2', name: '目錄維護', link: 'menu-matain', icon: <LibraryBooksIcon /> },
 ];
 
 const drawer = (
 	<List>
 		{menuList.map(v => (
-			<ListItem button key={v.id}>
-				<ListItemIcon>
-					{v.icon}
-				</ListItemIcon>
-				<ListItemText primary={v.name} />
-			</ListItem>
+			<NavLink to={`/${v.link}`} key={v.id}>
+				<ListItem button key={v.id}>
+					<ListItemIcon>
+						{v.icon}
+					</ListItemIcon>
+					<ListItemText primary={v.name} />
+				</ListItem>
+			</NavLink>
 		))}
 	</List>
 );
@@ -62,6 +71,7 @@ function App() {
 
 	return (
 		<div>
+			{/* header */}
 			<Box sx={{ flexGrow: 1 }}>
 				<AppBar position="static">
 					<Toolbar>
@@ -83,6 +93,7 @@ function App() {
 				</AppBar>
 			</Box>
 
+			{/* menu */}
 			<Drawer
 				sx={{
 					width: drawerWidth,
@@ -104,6 +115,17 @@ function App() {
 				<Divider />
 				{drawer}
 			</Drawer>
+
+			{/* content */}
+			<Box>
+				<Routes>
+					<Route path="/" element={<SentenceLearning />} />
+					<Route path="sentence-learning" element={<SentenceLearning />} />
+					<Route path="create-sentence" element={<CreateSentence />} />
+					<Route path="menu-matain" element={<MenuMatain />} />
+					<Route path="*" element={<NoMatch />} />
+				</Routes>
+			</Box>
 		</div>
 	);
 }
