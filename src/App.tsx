@@ -34,9 +34,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const menuList = [
-	{ id: '0', name: 'sentence learning', icon: <MenuBookIcon /> },
-	{ id: '1', name: 'create sentence', icon: <CreateIcon /> },
-	{ id: '2', name: 'menu matain', icon: <LibraryBooksIcon /> },
+	{ id: '0', name: '句子學習', icon: <MenuBookIcon /> }, // sentence learning
+	{ id: '1', name: '新增句子', icon: <CreateIcon /> }, // create sentence
+	{ id: '2', name: '目錄維護', icon: <LibraryBooksIcon /> }, // menu matain
 ];
 
 const drawer = (
