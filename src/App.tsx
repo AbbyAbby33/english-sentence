@@ -46,20 +46,7 @@ const menuList = [
 	{ id: '2', name: '目錄維護', link: 'menu-matain', icon: <LibraryBooksIcon /> },
 ];
 
-const drawer = (
-	<List>
-		{menuList.map(v => (
-			<NavLink to={`/${v.link}`} key={v.id}>
-				<ListItem button key={v.id}>
-					<ListItemIcon>
-						{v.icon}
-					</ListItemIcon>
-					<ListItemText primary={v.name} />
-				</ListItem>
-			</NavLink>
-		))}
-	</List>
-);
+
 
 function App() {
 	const theme = useTheme();
@@ -67,7 +54,25 @@ function App() {
 
 	const handleDrawerToggle = () => {
 		setOpen(!open);
-	};
+	};	
+
+	const drawer = (
+		<List>
+			{menuList.map(v => (
+				<NavLink
+					to={`/${v.link}`}
+					key={v.id}
+					onClick={handleDrawerToggle}>
+					<ListItem button key={v.id}>
+						<ListItemIcon>
+							{v.icon}
+						</ListItemIcon>
+						<ListItemText primary={v.name} />
+					</ListItem>
+				</NavLink>
+			))}
+		</List>
+	);
 
 	return (
 		<div>
