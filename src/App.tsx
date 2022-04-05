@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 // mui
-import { styled, useTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 // import AppBar from '@mui/material/AppBar';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -29,6 +29,29 @@ import SentenceLearning from './content/SentenceLearning/pages/SentenceLearning'
 import CreateSentence from './content/CreateSentence/pages/CreateSentence';
 import MenuMatain from './content/MenuMatain/pages/MenuMatain';
 import NoMatch from './content/NoMatch/pages/NoMatch';
+
+const theme = createTheme({
+	palette: {
+		primary: {
+			main: '#16504b',
+		},
+		secondary: {
+			main: '#f50057',
+		},
+		info: {
+			main: '#676F54',
+		},
+		warning: {
+			main: '#FDE74C',
+		},
+		error: {
+			main: '#A93636',
+		},
+		success: {
+			main: '#62dc66',
+		},
+	},
+});
 
 const drawerWidth = 240;
 
@@ -85,10 +108,7 @@ const menuList = [
 	{ id: '2', name: '目錄維護', link: 'menu-matain', icon: <LibraryBooksIcon /> },
 ];
 
-
-
 function App() {
-	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 
 	/** 菜單收合 */
@@ -116,8 +136,7 @@ function App() {
 	);
 
 	return (
-		<div>
-
+        <ThemeProvider theme={theme}>
 			{/* header */}
 			<Box sx={{ flexGrow: 1 }}>
 				<AppBar position="fixed" open={open}>
@@ -172,8 +191,9 @@ function App() {
 					<Route path="menu-matain" element={<MenuMatain />} />
 					<Route path="*" element={<NoMatch />} />
 				</Routes>
-			</Main>
-		</div>
+			</Main>		
+		</ThemeProvider>
+
 	);
 }
 
