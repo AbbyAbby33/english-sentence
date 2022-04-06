@@ -91,6 +91,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ 
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen,
 	}),
+	marginTop: 56, // 往下推header的高度
 	marginLeft: document.body.offsetWidth > 768 ? `-${drawerWidth}px` : 0,
 	...(open && {
 		transition: theme.transitions.create('margin', {
