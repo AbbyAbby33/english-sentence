@@ -22,6 +22,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import CreateIcon from '@mui/icons-material/Create';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import PaletteIcon from '@mui/icons-material/Palette';
 
 // router & pages
 import { NavLink, Route, Routes } from 'react-router-dom';
@@ -30,10 +32,33 @@ import CreateSentence from './content/CreateSentence/pages/CreateSentence';
 import MenuMatain from './content/MenuMatain/pages/MenuMatain';
 import NoMatch from './content/NoMatch/pages/NoMatch';
 
-const theme = createTheme({
+const theme1 = createTheme({
 	palette: {
 		primary: {
 			main: '#16504b',
+		},
+		secondary: {
+			main: '#f50057',
+		},
+		info: {
+			main: '#676F54',
+		},
+		warning: {
+			main: '#FDE74C',
+		},
+		error: {
+			main: '#A93636',
+		},
+		success: {
+			main: '#62dc66',
+		},
+	},
+});
+
+const theme2 = createTheme({
+	palette: {
+		primary: {
+			main: '#5bd9ce',
 		},
 		secondary: {
 			main: '#f50057',
@@ -110,11 +135,17 @@ const menuList = [
 
 function App() {
 	const [open, setOpen] = React.useState(false);
+	const [theme, setTheme] = React.useState({mode: 1, themeObj: theme1});
 
 	/** 菜單收合 */
 	const handleDrawerToggle = () => {
 		console.log('document.body.offsetWidth', document.body.offsetWidth);
 		setOpen(!open);
+	};
+
+	const changeTheme = () => {
+		const newTheme = theme.mode === 1 ? { mode: 2, themeObj: theme2 } : { mode: 1, themeObj: theme1 };
+		setTheme(newTheme);
 	};
 
 	const drawer = (
@@ -136,7 +167,7 @@ function App() {
 	);
 
 	return (
-        <ThemeProvider theme={theme}>
+		<ThemeProvider theme={theme.themeObj}>
 			{/* header */}
 			<Box sx={{ flexGrow: 1 }}>
 				<AppBar position="fixed" open={open}>
@@ -154,7 +185,25 @@ function App() {
 						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 							英文句子
 						</Typography>
-						<Button color="inherit">登入</Button>
+						{/* 切換主題 */}
+						<IconButton
+							size="large"
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							color="inherit"
+							onClick={changeTheme}>
+							<PaletteIcon />
+						</IconButton>
+						{/* 登入 */}
+						<IconButton
+							size="large"
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							color="inherit">
+							<AccountCircle />
+						</IconButton>
 					</Toolbar>
 				</AppBar>
 			</Box>
@@ -175,7 +224,7 @@ function App() {
 			>
 				<DrawerHeader>
 					<IconButton onClick={handleDrawerToggle}>
-						{theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+						{theme.themeObj.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
 					</IconButton>
 				</DrawerHeader>
 				<Divider />
@@ -191,7 +240,7 @@ function App() {
 					<Route path="menu-matain" element={<MenuMatain />} />
 					<Route path="*" element={<NoMatch />} />
 				</Routes>
-			</Main>		
+			</Main>
 		</ThemeProvider>
 
 	);
