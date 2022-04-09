@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import Topic from '../components/Topic';
 
 export default function SentenceLearning() {
 
@@ -18,28 +18,10 @@ export default function SentenceLearning() {
         {id: 't0012', name: '表達意見'},
     ];
 
-    const Topic = styled.div`
-                        @media (max-width: 600px) {
-                            width: calc(50% - 6px);
-                        }
-                        @media (min-width: 601px) and (max-width: 900px) {
-                            width: calc(25% - 6px);
-                        }
-                        display: inline-block;
-                        color: turquoise;
-                        width: calc(12.5% - 6px);
-                        background: #333;
-                        text-align: center;
-                        padding: 10px;
-                        box-sizing: border-box;
-                        margin: 0 3px 6px;
-                        border-radius: 3px;
-                    `
-
     return (
         <div>
             {TOPIC_LIST.map(v => {
-                return <Topic key={v.id}>{v.name}</Topic>
+                return <Topic key={v.id} {...v}></Topic>
             })}
         </div>
 
