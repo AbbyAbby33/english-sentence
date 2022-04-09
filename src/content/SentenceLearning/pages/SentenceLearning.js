@@ -1,4 +1,5 @@
 import Topic from '../components/Topic';
+import styled from '@emotion/styled';
 
 export default function SentenceLearning() {
 
@@ -18,8 +19,14 @@ export default function SentenceLearning() {
         {id: 't0012', name: '表達意見'},
     ];
 
+    const Title = styled.h1`
+                        text-align: center;
+                        margin: 0 0 15px;
+                    `
+    
     return (
         <div>
+            <Title>主題</Title>
             {TOPIC_LIST.map(v => {
                 return <Topic key={v.id} {...v}></Topic>
             })}
