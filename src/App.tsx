@@ -27,6 +27,8 @@ import PaletteIcon from '@mui/icons-material/Palette';
 
 // router & pages
 import { NavLink, Route, Routes } from 'react-router-dom';
+import TopicList from './content/TopicList/pages/TopicList';
+import SentenceList from './content/SentenceList/pages/SentenceList';
 import SentenceLearning from './content/SentenceLearning/pages/SentenceLearning';
 import CreateSentence from './content/CreateSentence/pages/CreateSentence';
 import MenuMatain from './content/MenuMatain/pages/MenuMatain';
@@ -129,7 +131,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 const menuList = [
-	{ id: '0', name: '句子學習', link: 'sentence-learning', icon: <MenuBookIcon /> },
+	{ id: '0', name: '句子學習', link: 'topic-list', icon: <MenuBookIcon /> },
 	{ id: '1', name: '新增句子', link: 'create-sentence', icon: <CreateIcon /> },
 	{ id: '2', name: '目錄維護', link: 'menu-matain', icon: <LibraryBooksIcon /> },
 ];
@@ -235,8 +237,10 @@ function App() {
 			{/* content */}
 			<Main open={open}>
 				<Routes>
-					<Route path="/" element={<SentenceLearning />} />
-					<Route path="sentence-learning" element={<SentenceLearning />} />
+					<Route path="/" element={<TopicList />} />
+					<Route path="topic-list" element={<TopicList />} />
+					<Route path="topic-list/:id" element={<SentenceList />} />
+					<Route path="sentence-learning/:id" element={<SentenceLearning />} />
 					<Route path="create-sentence" element={<CreateSentence />} />
 					<Route path="menu-matain" element={<MenuMatain />} />
 					<Route path="*" element={<NoMatch />} />
