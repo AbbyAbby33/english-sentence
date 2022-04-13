@@ -94,13 +94,14 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{ 
 		duration: theme.transitions.duration.leavingScreen,
 	}),
 	marginTop: 56, // 往下推header的高度
-	marginLeft: document.body.offsetWidth > 768 ? `-${drawerWidth}px` : 0,
 	...(open && {
+		boxSizing: 'border-box',
+		width: document.body.offsetWidth > 768 ? `calc(100% - ${drawerWidth}px)` : '100%',
+		marginLeft: document.body.offsetWidth > 768 ? `${drawerWidth}px` : 0,
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.easeOut,
 			duration: theme.transitions.duration.enteringScreen,
 		}),
-		marginLeft: 0,
 	}),
 }));
 
