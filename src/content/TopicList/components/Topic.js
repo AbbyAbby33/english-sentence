@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export default function Topic(props) {
-    const { name } = props;
+    const { name, id } = props;
 
     const Button = styled.div`
                         @media (max-width: 600px) {
@@ -22,6 +23,8 @@ export default function Topic(props) {
                     `
 
     return (
-        <Button>{name}</Button>
+        <NavLink to={`${id}`}>
+            <Button>{name}</Button>
+        </NavLink>
     )
 }
