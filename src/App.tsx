@@ -8,7 +8,6 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
@@ -24,6 +23,7 @@ import CreateIcon from '@mui/icons-material/Create';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import PaletteIcon from '@mui/icons-material/Palette';
+import CssBaseline from '@mui/material/CssBaseline';
 
 // router & pages
 import { NavLink, Route, Routes } from 'react-router-dom';
@@ -35,6 +35,16 @@ import MenuMatain from './content/MenuMatain/pages/MenuMatain';
 import NoMatch from './content/NoMatch/pages/NoMatch';
 
 const theme1 = createTheme({
+	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+				body: {
+					// TODO: 以後可能會跟著主題換色
+					backgroundColor: '#aac5b4'
+				}
+			}
+		}
+	},
 	palette: {
 		primary: {
 			main: '#16504b',
@@ -139,7 +149,7 @@ const menuList = [
 
 function App() {
 	const [open, setOpen] = React.useState(false);
-	const [theme, setTheme] = React.useState({mode: 1, themeObj: theme1});
+	const [theme, setTheme] = React.useState({ mode: 1, themeObj: theme1 });
 
 	/** 菜單收合 */
 	const handleDrawerToggle = () => {
@@ -172,6 +182,7 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme.themeObj}>
+			<CssBaseline />
 			{/* header */}
 			<Box sx={{ flexGrow: 1 }}>
 				<AppBar position="fixed" open={open}>
