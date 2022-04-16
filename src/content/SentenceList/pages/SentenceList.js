@@ -53,6 +53,7 @@ export default function SentenceList() {
                 padding: '6px 10px',
                 background: '#dcdbc9',
                 borderLeft: '2px solid #16504b',
+                borderRadius: '6px',
 
                 '& h2': {
                     margin: '0 0 3px',
