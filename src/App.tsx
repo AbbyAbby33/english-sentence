@@ -40,10 +40,16 @@ const theme1 = createTheme({
 			styleOverrides: {
 				body: {
 					// TODO: 以後可能會跟著主題換色
-					backgroundColor: '#aac5b4'
+					backgroundColor: '#aac5b4',
+					color: 'rgb(0, 0, 0)'
 				}
 			}
 		}
+	},
+
+	typography: {
+		// Google fonts：'Zen Old Mincho'
+		fontFamily: `'Zen Old Mincho', 'serif', 'Segoe UI', 'Roboto'`,
 	},
 	palette: {
 		primary: {

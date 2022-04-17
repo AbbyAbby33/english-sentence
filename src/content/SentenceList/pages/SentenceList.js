@@ -71,6 +71,9 @@ export default function SentenceList() {
         },
         '& .chinese-sentence': {
             margin: '0 0 10px'
+        },
+        '& .english-font-family': {
+            fontFamily: `'Roboto Mono', 'serif', 'Segoe UI', 'Roboto'`
         }
     }));
 
@@ -85,17 +88,17 @@ export default function SentenceList() {
                             <CardContent>
                                 <div className="sentence-pattern-wrap">
                                     <div className="sentence-pattern">
-                                        <h2>{v.englishPattern}</h2>
+                                        <h2 className="english-font-family">{v.englishPattern}</h2>
                                         <p>{v.chinesePattern}</p>
                                     </div>
                                 </div>
                                 {v.list.map(s => {
                                     return (
                                         <React.Fragment key={s.id}>
-                                            <Typography className="english-sentence">
+                                            <Typography className="english-sentence english-font-family">
                                                 {s.englishSentence}
                                             </Typography>
-                                            <Typography className="chinese-sentence" color="text.secondary">
+                                            <Typography className="chinese-sentence">
                                                 {s.chineseSentence}
                                             </Typography>
                                         </React.Fragment>
