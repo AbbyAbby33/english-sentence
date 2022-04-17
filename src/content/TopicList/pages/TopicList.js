@@ -23,6 +23,7 @@ export default function TopicList() {
     const Title = styled.h1`
                         text-align: center;
                         margin: 0 0 15px;
+                        font-size: 28px;
                     `
     
     let [searchParams, setSearchParams] = useSearchParams();

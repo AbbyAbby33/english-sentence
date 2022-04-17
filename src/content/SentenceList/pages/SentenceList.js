@@ -19,16 +19,16 @@ export default function SentenceList() {
         },
         {
             id: 'p0001', englishPattern: 'This is...speaking.', chinesePattern: '是...接聽。', list: [
-                { id: 's0002', englishSentence: 'This is he/she.', chineseSentence: '..............' },
-                { id: 's0003', englishSentence: 'This is Vicky speaking.', chineseSentence: '..............' }
+                { id: 's0002', englishSentence: 'This is he/she.', chineseSentence: '我就是。' },
+                { id: 's0003', englishSentence: 'This is Vicky speaking.', chineseSentence: '我是Vicky。' }
             ]
         },
         {
             id: 'p0002', englishPattern: 'This is a call from...', chinesePattern: '是...打來的。', list: [
-                { id: 's0004', englishSentence: 'This is a call from Ms. Chen.', chineseSentence: '..............' },
-                { id: 's0005', englishSentence: 'This is a call from you client.', chineseSentence: '..............' },
-                { id: 's0006', englishSentence: 'This is a call from Singapore.', chineseSentence: '..............' },
-                { id: 's0007', englishSentence: 'This is a call from the manager.', chineseSentence: '..............' }
+                { id: 's0004', englishSentence: 'This is a call from Ms. Chen.', chineseSentence: '陳小姐來電。' },
+                { id: 's0005', englishSentence: 'This is a call from you client.', chineseSentence: '你的客戶來電。' },
+                { id: 's0006', englishSentence: 'This is a call from Singapore.', chineseSentence: '這是從新加坡打來的電話。' },
+                { id: 's0007', englishSentence: 'This is a call from the manager.', chineseSentence: '這是經理的來電。' }
             ]
         },
         {
@@ -42,6 +42,7 @@ export default function SentenceList() {
     const Title = styled.h1`
                         text-align: center;
                         margin: 0 0 15px;
+                        font-size: 28px;
                     `;
 
     /** 句型卡sytle */
