@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import styled from '@emotion/styled';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { createTheme, ThemeProvider, styled as muiStyled } from '@mui/material/styles';
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -111,6 +111,71 @@ function createPatternTableRow(
     return { id, englishPattern, chinesePattern, operate };
 }
 
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme1.palette.myAwesomeColor.main,
+        padding: '10px 16px' 
+    }
+}));
+
+declare module "@mui/material/styles" {
+    interface Palette {
+        myAwesomeColor?: any;
+    }
+    interface PaletteOptions {
+        myAwesomeColor?: any;
+    }
+}
+
+// TODO: 應該要放在某處集中管理
+const theme1 = createTheme({
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    // TODO: 以後可能會跟著主題換色
+                    backgroundColor: '#aac5b4',
+                    color: 'rgb(0, 0, 0)',
+                    '& .english-font-family': {
+                        fontFamily: `'Roboto Mono', 'serif', 'Segoe UI', 'Roboto'`
+                    },
+                    '& .m0': {
+                        margin: '0'
+                    }
+                }
+            }
+        }
+    },
+
+    typography: {
+        fontFamily: `'Zen Old Mincho', 'serif', 'Segoe UI', 'Roboto'`,
+    },
+    palette: {
+        primary: {
+            main: '#16504b',
+        },
+        secondary: {
+            main: '#f50057',
+        },
+        info: {
+            main: '#676F54',
+        },
+        warning: {
+            main: '#FDE74C',
+        },
+        error: {
+            main: '#A93636',
+        },
+        success: {
+            main: '#62dc66',
+        },
+        myAwesomeColor: {
+            main: '#dcdbc9',
+        },
+    },
+});
+
 export default function MenuMatain() {
 
     const [value, setValue] = React.useState(0);
@@ -138,9 +203,9 @@ export default function MenuMatain() {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>編號</TableCell>
-                        <TableCell>主題</TableCell>
-                        <TableCell>操作</TableCell>
+                        <StyledTableCell style={{ width: '60px' }}>編號</StyledTableCell>
+                        <StyledTableCell>主題</StyledTableCell>
+                        <StyledTableCell style={{ width: '90px' }}>操作</StyledTableCell>
                         {/* <TableCell align="center">操作</TableCell> */}
                     </TableRow>
                 </TableHead>
@@ -167,9 +232,9 @@ export default function MenuMatain() {
             <Table aria-label="simple table" stickyHeader>
                 <TableHead>
                     <TableRow>
-                        <TableCell>編號</TableCell>
-                        <TableCell>句型</TableCell>
-                        <TableCell>操作</TableCell>
+                        <StyledTableCell style={{ width: '60px' }}>編號</StyledTableCell>
+                        <StyledTableCell>句型</StyledTableCell>
+                        <StyledTableCell style={{ width: '90px' }}>操作</StyledTableCell>
                         {/* <TableCell align="center">操作</TableCell> */}
                     </TableRow>
                 </TableHead>
@@ -207,23 +272,23 @@ export default function MenuMatain() {
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <Stack spacing={2}>
-                    <TextField
-                        sx={{ width: '100%' }}
-                        id="outlined-select-currency"
-                        select
-                        label="主題"
-                        value={topic}
-                        onChange={handleTopicChange}
-                    >
-                        {TOPIC_LIST.map((option) => (
-                            <MenuItem key={option.id} value={option.id}>
-                                {option.name}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <Box sx={{ overflowX: 'scroll', boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)' }}>
-                        {patternList}
-                    </Box>
+                        <TextField
+                            sx={{ width: '100%' }}
+                            id="outlined-select-currency"
+                            select
+                            label="主題"
+                            value={topic}
+                            onChange={handleTopicChange}
+                        >
+                            {TOPIC_LIST.map((option) => (
+                                <MenuItem key={option.id} value={option.id}>
+                                    {option.name}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <Box sx={{ overflowX: 'scroll', boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)' }}>
+                            {patternList}
+                        </Box>
                     </Stack>
 
 
