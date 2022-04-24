@@ -163,7 +163,7 @@ export default function MenuMatain() {
     );
 
     const patternList = (
-        <TableContainer component={Paper} sx={{ minWidth: '340px' }}>
+        <TableContainer component={Paper} sx={{ minWidth: '400px' }}>
             <Table aria-label="simple table" stickyHeader>
                 <TableHead>
                     <TableRow>
@@ -181,7 +181,8 @@ export default function MenuMatain() {
                         >
                             <TableCell>{i + 1}</TableCell>
                             <TableCell component="th" scope="row">
-                                {row.englishPattern}
+                                <p className="english-font-family m0">{row.englishPattern}</p>
+                                {row.chinesePattern}
                             </TableCell>
                             <TableCell>{row.operate}</TableCell>
                         </TableRow>
