@@ -70,6 +70,13 @@ const TOPIC_LIST = [
     { id: 't0012', name: '表達意見' },
 ];
 
+const PATTERN_LIST = [
+    { id: 'p0000', englishPattern: 'Is this...?', chinesePattern: '請問是...？' },
+    { id: 'p0001', englishPattern: 'This is...speaking.', chinesePattern: '是...接聽。' },
+    { id: 'p0002', englishPattern: 'This is a call from...', chinesePattern: '是...打來的。' },
+    { id: 'p9999', englishPattern: 'Other', chinesePattern: '其他' }
+];
+
 /** 新增MUI表格的列資料 */
 function createTableRow(
     id: string,
@@ -85,15 +92,32 @@ function createTableRow(
     return { id, name, operate };
 }
 
+/** 新增MUI表格的列資料 */
+function createPatternTableRow(
+    id: string,
+    englishPattern: string,
+    chinesePattern: string
+) {
+    const operate =
+        (
+            <div>
+                <EditIcon sx={{ marginRight: '6px' }}></EditIcon>
+                <DeleteIcon></DeleteIcon>
+            </div>
+        );
+    return { id, englishPattern, chinesePattern, operate };
+}
+
 export default function MenuMatain() {
 
     const [value, setValue] = React.useState(0);
 
-    const rows = TOPIC_LIST.map(v => {
-        // const name = v['name'];
-        // const operate = v['name'];
-        // return { name, operate };
+    const topicRows = TOPIC_LIST.map(v => {
         return createTableRow(v.id, v.name);
+    });
+
+    const patternRows = PATTERN_LIST.map(v => {
+        return createPatternTableRow(v.id, v.englishPattern, v.chinesePattern);
     });
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -113,12 +137,12 @@ export default function MenuMatain() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row, i) => (
+                    {topicRows.map((row, i) => (
                         <TableRow
-                            key={row.name}
+                            key={row.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell>{i}</TableCell>
+                            <TableCell>{i + 1}</TableCell>
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
@@ -130,6 +154,34 @@ export default function MenuMatain() {
         </TableContainer>
     );
 
+    const patternList = (
+        <TableContainer component={Paper} sx={{ minWidth: '340px' }}>
+            <Table aria-label="simple table" stickyHeader>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>編號</TableCell>
+                        <TableCell>句型</TableCell>
+                        <TableCell>操作</TableCell>
+                        {/* <TableCell align="center">操作</TableCell> */}
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {patternRows.map((row, i) => (
+                        <TableRow
+                            key={row.id}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell>{i + 1}</TableCell>
+                            <TableCell component="th" scope="row">
+                                {row.englishPattern}
+                            </TableCell>
+                            <TableCell>{row.operate}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
 
     return (
         <React.Fragment>
@@ -145,7 +197,9 @@ export default function MenuMatain() {
                     {topicList}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    句型列表
+                    <Box sx={{ overflowX: 'scroll', boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)' }}>
+                        {patternList}
+                    </Box>
                 </TabPanel>
             </Box>
         </React.Fragment>
