@@ -197,8 +197,8 @@ export default function MenuMatain() {
             <Box sx={{ width: '100%', bgcolor: '#fff', borderRadius: '4px' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab label="主題列表" {...a11yProps(0)} />
-                        <Tab label="句型列表" {...a11yProps(1)} />
+                        <Tab label="主題維護" {...a11yProps(0)} />
+                        <Tab label="句型維護" {...a11yProps(1)} />
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
