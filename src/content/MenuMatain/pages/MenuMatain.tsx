@@ -69,7 +69,7 @@ const TOPIC_LIST = [
     { id: 't0008', name: '道歉' },
     { id: 't0009', name: '談判' },
     { id: 't0010', name: '開會' },
-    { id: 't0011', name: '議題搞論' },
+    { id: 't0011', name: '議題討論' },
     { id: 't0012', name: '表達意見' },
 ];
 

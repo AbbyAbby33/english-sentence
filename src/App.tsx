@@ -41,7 +41,13 @@ const theme1 = createTheme({
 				body: {
 					// TODO: 以後可能會跟著主題換色
 					backgroundColor: '#aac5b4',
-					color: 'rgb(0, 0, 0)'
+					color: 'rgb(0, 0, 0)',
+					'& .english-font-family': {
+						fontFamily: `'Roboto Mono', 'serif', 'Segoe UI', 'Roboto'`
+					},
+					'& .m0': {
+						margin: '0'
+					}
 				}
 			}
 		}
