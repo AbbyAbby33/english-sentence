@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
-export default function Topic(props) {
+interface TopicInterface {
+    id: string;
+    name: string;
+    key: string;
+}
+
+export default function Topic(props: TopicInterface) {
     const { name, id } = props;
 
     const Button = styled.div`
