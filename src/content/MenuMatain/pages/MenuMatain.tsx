@@ -146,7 +146,7 @@ export default function MenuMatain() {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell style={{ width: '60px' }}>編號</StyledTableCell>
+                        <StyledTableCell style={{ width: '70px' }}>編號</StyledTableCell>
                         <StyledTableCell>主題</StyledTableCell>
                         <StyledTableCell style={{ width: '90px' }}>操作</StyledTableCell>
                         {/* <TableCell align="center">操作</TableCell> */}
@@ -175,7 +175,7 @@ export default function MenuMatain() {
             <Table aria-label="simple table" stickyHeader>
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell style={{ width: '60px' }}>編號</StyledTableCell>
+                        <StyledTableCell style={{ width: '70px' }}>編號</StyledTableCell>
                         <StyledTableCell>句型</StyledTableCell>
                         <StyledTableCell style={{ width: '90px' }}>操作</StyledTableCell>
                         {/* <TableCell align="center">操作</TableCell> */}
