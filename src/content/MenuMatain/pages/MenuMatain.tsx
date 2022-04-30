@@ -15,7 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { createTheme, ThemeProvider, styled as muiStyled } from '@mui/material/styles';
+import { styled as muiStyled } from '@mui/material/styles';
+
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -111,70 +112,12 @@ function createPatternTableRow(
     return { id, englishPattern, chinesePattern, operate };
 }
 
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = muiStyled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme1.palette.myAwesomeColor.main,
+        backgroundColor: theme.palette['title-background'].main,
         padding: '10px 16px' 
     }
 }));
-
-declare module "@mui/material/styles" {
-    interface Palette {
-        myAwesomeColor?: any;
-    }
-    interface PaletteOptions {
-        myAwesomeColor?: any;
-    }
-}
-
-// TODO: 應該要放在某處集中管理
-const theme1 = createTheme({
-    components: {
-        MuiCssBaseline: {
-            styleOverrides: {
-                body: {
-                    // TODO: 以後可能會跟著主題換色
-                    backgroundColor: '#aac5b4',
-                    color: 'rgb(0, 0, 0)',
-                    '& .english-font-family': {
-                        fontFamily: `'Roboto Mono', 'serif', 'Segoe UI', 'Roboto'`
-                    },
-                    '& .m0': {
-                        margin: '0'
-                    }
-                }
-            }
-        }
-    },
-
-    typography: {
-        fontFamily: `'Zen Old Mincho', 'serif', 'Segoe UI', 'Roboto'`,
-    },
-    palette: {
-        primary: {
-            main: '#16504b',
-        },
-        secondary: {
-            main: '#f50057',
-        },
-        info: {
-            main: '#676F54',
-        },
-        warning: {
-            main: '#FDE74C',
-        },
-        error: {
-            main: '#A93636',
-        },
-        success: {
-            main: '#62dc66',
-        },
-        myAwesomeColor: {
-            main: '#dcdbc9',
-        },
-    },
-});
 
 export default function MenuMatain() {
 

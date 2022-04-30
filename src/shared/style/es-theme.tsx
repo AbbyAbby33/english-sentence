@@ -20,6 +20,15 @@ function createFontFamily(fontFamily: string) {
     }
 }
 
+declare module "@mui/material/styles" {
+    interface Palette {
+        'title-background'?: any;
+    }
+    interface PaletteOptions {
+        'title-background'?: any;
+    }
+}
+
 /** 基礎共用theme */
 const themeBase = createTheme({
     components: {
@@ -73,7 +82,10 @@ const theme1 = createTheme(themeBase, {
         },
         info: {
             main: '#676F54',
-        }
+        },
+        'title-background': {
+            main: '#dcdbc9',
+        },
     },
 });
 
@@ -100,7 +112,10 @@ const theme2 = createTheme(themeBase, {
         },
         info: {
             main: '#e36414',
-        }
+        },
+        'title-background': {
+            main: '#ffb5a7',
+        },
     },
 });
 
