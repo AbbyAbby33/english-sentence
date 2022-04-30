@@ -211,7 +211,9 @@ function App() {
 							<MenuIcon />
 						</IconButton>
 						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-							英文句子
+							<NavLink to={`/`}>
+								英文句子
+							</NavLink>
 						</Typography>
 						{/* 切換主題 */}
 						<IconButton
