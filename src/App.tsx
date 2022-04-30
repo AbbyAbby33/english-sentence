@@ -33,6 +33,7 @@ import SentenceLearning from './content/SentenceLearning/pages/SentenceLearning'
 import CreateSentence from './content/CreateSentence/pages/CreateSentence';
 import MenuMatain from './content/MenuMatain/pages/MenuMatain';
 import NoMatch from './content/NoMatch/pages/NoMatch';
+import Home from './content/Home/pages/Home';
 
 const theme1 = createTheme({
 	components: {
@@ -261,7 +262,7 @@ function App() {
 			{/* content */}
 			<Main open={open}>
 				<Routes>
-					<Route path="/" element={<TopicList />} />
+					<Route path="/" element={<Home />} />
 					<Route path="topic-list" element={<TopicList />} />
 					<Route path="topic-list/:id" element={<SentenceList />} />
 					<Route path="sentence-learning/:id" element={<SentenceLearning />} />
