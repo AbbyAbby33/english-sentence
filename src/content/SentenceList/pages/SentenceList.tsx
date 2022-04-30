@@ -1,12 +1,10 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { jsx, css } from '@emotion/react'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { styled as muiStyled } from '@mui/material/styles';
 
 export default function SentenceList() {
 
@@ -46,14 +44,14 @@ export default function SentenceList() {
                     `;
 
     /** 句型卡sytle */
-    const CardStyle = styled(Card)(({ theme }) => ({
+    const CardStyle = muiStyled(Card)(({ theme }) => ({
         // 句型標題組        
         '& .sentence-pattern-wrap': {
             margin: '0 0 16px',
             '& .sentence-pattern': {
                 padding: '6px 10px',
-                background: '#dcdbc9',
-                borderLeft: '2px solid #16504b',
+                background: theme.palette['title-background'].main,
+                borderLeft: `2px solid ${theme.palette.primary.main}`,
                 borderRadius: '6px',
 
                 '& h2': {
