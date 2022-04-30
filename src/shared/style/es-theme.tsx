@@ -1,17 +1,40 @@
+// mui custom theme
 import { createTheme } from '@mui/material/styles';
+
+/** 建立給typography的字型物件 */
+function createFontFamily(fontFamily: string) {
+    return {
+        h1: { fontFamily: fontFamily },
+        h2: { fontFamily: fontFamily },
+        h3: { fontFamily: fontFamily },
+        h4: { fontFamily: fontFamily },
+        h5: { fontFamily: fontFamily },
+        h6: { fontFamily: fontFamily },
+        subtitle1: { fontFamily: fontFamily },
+        subtitle2: { fontFamily: fontFamily },
+        body1: { fontFamily: fontFamily },
+        body2: { fontFamily: fontFamily },
+        button: { fontFamily: fontFamily },
+        caption: { fontFamily: fontFamily },
+        overline: { fontFamily: fontFamily },
+    }
+}
 
 /** 基礎共用theme */
 const themeBase = createTheme({
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    color: 'rgb(0, 0, 0)',
+                    '& .m0': {
+                        margin: '0'
+                    }
+                }
+            }
+        }
+    },
     palette: {
-        primary: {
-            main: '#16504b',
-        },
-        secondary: {
-            main: '#f50057',
-        },
-        info: {
-            main: '#676F54',
-        },
         warning: {
             main: '#FDE74C',
         },
@@ -29,31 +52,56 @@ const theme1 = createTheme(themeBase, {
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    // TODO: 以後可能會跟著主題換色
                     backgroundColor: '#aac5b4',
-                    color: 'rgb(0, 0, 0)',
                     '& .english-font-family': {
                         fontFamily: `'Roboto Mono', 'serif', 'Segoe UI', 'Roboto'`
                     },
-                    '& .m0': {
-                        margin: '0'
-                    }
                 }
             }
         }
     },
-    typography: {
-        // Google fonts：'Zen Old Mincho'
-        fontFamily: `'Zen Old Mincho', 'serif', 'Segoe UI', 'Roboto'`,
+    // typography: {
+    //     fontFamily: `'Zen Old Mincho','微軟正黑體', 'serif', 'Segoe UI', 'Roboto'`,
+    // },
+    typography: createFontFamily(`'Zen Old Mincho','微軟正黑體', 'serif', 'Segoe UI', 'Roboto'`),
+    palette: {
+        primary: {
+            main: '#16504b',
+        },
+        secondary: {
+            main: '#f50057',
+        },
+        info: {
+            main: '#676F54',
+        }
     },
 });
 
 const theme2 = createTheme(themeBase, {
-	palette: {
-		primary: {
-			main: '#5bd9ce',
-		},
-	},
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    backgroundColor: '#fb8b24',
+                    '& .english-font-family': {
+                        fontFamily: `'Kanit', 'serif', 'Segoe UI', 'Roboto'`,
+                    },
+                }
+            }
+        }
+    },
+    typography: createFontFamily(`'微軟正黑體', 'serif', 'Segoe UI', 'Roboto'`),
+    palette: {
+        primary: {
+            main: '#9a031e',
+        },
+        secondary: {
+            main: '#f50057',
+        },
+        info: {
+            main: '#e36414',
+        }
+    },
 });
 
 export { theme1, theme2 };
