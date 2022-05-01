@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { styled as muiStyled } from '@mui/material/styles';
+import PageTitle from '../../../shared/components/PageTitle';
 
 export default function SentenceList() {
 
@@ -35,13 +35,6 @@ export default function SentenceList() {
             ]
         },
     ];
-
-    /** 標題sytle */
-    const Title = styled.h1`
-                        text-align: center;
-                        margin: 0 0 15px;
-                        font-size: 28px;
-                    `;
 
     /** 句型卡sytle */
     const CardStyle = muiStyled(Card)(({ theme }) => ({
@@ -75,7 +68,7 @@ export default function SentenceList() {
 
     return (
         <React.Fragment>
-            <Title>句型</Title>
+            <PageTitle title='句型' />
             {PATTERN_LIST.map(v => {
                 return (
                     <Box key={v.id} sx={{ minWidth: 275 }}>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import PageTitle from '../../../shared/components/PageTitle';
 
 const TOPIC_LIST = [
     { id: 't0000', name: '打招呼' },
@@ -46,16 +46,9 @@ export default function CreateSentence() {
         setPattern(event.target.value);
     };
 
-    /** 標題sytle */
-    const Title = styled.h1`
-                        text-align: center;
-                        margin: 0 0 15px;
-                        font-size: 28px;
-                    `;
-
     return (
         <React.Fragment>
-            <Title>新增句子</Title>
+            <PageTitle title='新增句子' />
             <Box sx={{ minWidth: 275 }}>
                 {/* TODO: 拆成變數或FUNTION */}
                 <Card sx={{ mb: '15px', pb: '15px' }}>

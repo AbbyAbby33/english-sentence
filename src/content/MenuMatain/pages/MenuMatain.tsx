@@ -2,7 +2,6 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import styled from '@emotion/styled';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -16,6 +15,7 @@ import Stack from '@mui/material/Stack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled as muiStyled } from '@mui/material/styles';
+import PageTitle from '../../../shared/components/PageTitle';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -50,13 +50,6 @@ function a11yProps(index: number) {
         'aria-controls': `simple-tabpanel-${index}`,
     };
 }
-
-/** 標題sytle */
-const Title = styled.h1`
-                        text-align: center;
-                        margin: 0 0 15px;
-                        font-size: 28px;
-                    `;
 
 const TOPIC_LIST = [
     { id: 't0000', name: '打招呼' },
@@ -202,7 +195,7 @@ export default function MenuMatain() {
 
     return (
         <React.Fragment>
-            <Title>目錄維護</Title>
+            <PageTitle title='目錄維護' />
             <Box sx={{ width: '100%', bgcolor: '#fff', borderRadius: '4px' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
