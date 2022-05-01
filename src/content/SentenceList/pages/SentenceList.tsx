@@ -71,9 +71,6 @@ export default function SentenceList() {
         '& .chinese-sentence': {
             margin: '0 0 10px'
         },
-        '& .english-font-family': {
-            fontFamily: `'Roboto Mono', 'serif', 'Segoe UI', 'Roboto'`
-        }
     }));
 
     return (
