@@ -94,7 +94,7 @@ const theme2 = createTheme(themeBase, {
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    backgroundColor: '#fb8b24',
+                    backgroundColor: '#F6D0B1',
                     '& .english-font-family': {
                         fontFamily: `'Kanit', 'serif', 'Segoe UI', 'Roboto'`,
                     },
@@ -111,7 +111,7 @@ const theme2 = createTheme(themeBase, {
             main: '#f50057',
         },
         info: {
-            main: '#e36414',
+            main: '#fb8b24',
         },
         'title-background': {
             main: '#ffb5a7',
