@@ -3,11 +3,13 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import PageTitle from '../../../shared/components/PageTitle';
+import EsMuiTextArea from '../../../shared/components/EsMuiTextArea';
+import EsMuiSelect from '../../../shared/components/EsMuiSelect';
+import EsMuiSelectCustomLabel from '../../../shared/components/EsMuiSelectCustomLabel';
 
 const TOPIC_LIST = [
     { id: 't0000', name: '打招呼' },
@@ -38,11 +40,11 @@ export default function CreateSentence() {
     const [topic, setTopic] = React.useState('t0000');
     const [pattern, setPattern] = React.useState('p0000');
 
-    const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setTopic(event.target.value);
     };
 
-    const handlePatternChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePatternChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setPattern(event.target.value);
     };
 
@@ -54,49 +56,32 @@ export default function CreateSentence() {
                 <Card sx={{ mb: '15px', pb: '15px' }}>
                     <CardContent sx={{ pb: '5px' }}>
                         <Stack spacing={2}>
-                            <TextField
-                                id="outlined-select-currency"
-                                select
+                            <EsMuiSelect
+                                id="topic-select"
                                 label="主題"
                                 value={topic}
-                                onChange={handleTopicChange}
-                            >
-                                {TOPIC_LIST.map((option) => (
-                                    <MenuItem key={option.id} value={option.id}>
-                                        {option.name}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                            <TextField
-                                id="outlined-select-currency"
-                                select
+                                handleValueChange={handleTopicChange}
+                                list={TOPIC_LIST} />
+                            <EsMuiSelectCustomLabel
+                                id="pattern-select"
                                 label="句型"
                                 value={pattern}
-                                onChange={handlePatternChange}
-                            >
+                                handleValueChange={handlePatternChange}>
                                 {PATTERN_LIST.map((option) => (
                                     <MenuItem key={option.id} value={option.id}>
                                         <p className="english-font-family m0">{option.englishPattern}</p>
                                         {option.chinesePattern}
                                     </MenuItem>
                                 ))}
-                            </TextField>
-                            <TextField
-                                fullWidth
+                            </EsMuiSelectCustomLabel>
+                            <EsMuiTextArea
                                 id="english-sentence-input"
                                 label="英文句子"
-                                type="text"
-                                multiline
-                                rows={6}
-                            />
-                            <TextField
-                                fullWidth
+                                rows={6} />
+                            <EsMuiTextArea
                                 id="chinese-sentence-input"
                                 label="本句中文翻譯"
-                                type="text"
-                                multiline
-                                rows={6}
-                            />
+                                rows={6} />
                         </Stack>
                     </CardContent>
                     <CardActions sx={{ flexDirection: 'column' }}>
@@ -105,6 +90,5 @@ export default function CreateSentence() {
                 </Card>
             </Box>
         </React.Fragment>
-
     )
 }
