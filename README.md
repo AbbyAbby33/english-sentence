@@ -1,3 +1,6 @@
+# 關於【英文句子】專案
+- node version：16.13.0
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
