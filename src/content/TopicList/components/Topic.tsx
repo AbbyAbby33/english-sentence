@@ -48,6 +48,9 @@ export default function Topic(props: TopicInterface) {
         margin: '0 3px 6px',
         borderradius: '3px',
         fontSize: '1rem',
+        '&:hover': {
+            backgroundColor: theme.palette.info.darker,
+        },
     }));
 
     return (

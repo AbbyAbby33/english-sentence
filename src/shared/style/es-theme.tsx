@@ -22,10 +22,17 @@ function createFontFamily(fontFamily: string) {
 
 declare module "@mui/material/styles" {
     interface Palette {
-        'title-background'?: any;
+        'title-background'?: Palette['primary'] | any;
     }
     interface PaletteOptions {
-        'title-background'?: any;
+        'title-background'?: PaletteOptions['primary'] | any;
+    }
+
+    interface PaletteColor {
+        darker?: string;
+    }
+    interface SimplePaletteColorOptions {
+        darker?: string;
     }
 }
 
@@ -81,7 +88,8 @@ const theme1 = createTheme(themeBase, {
             main: '#f50057',
         },
         info: {
-            main: '#676F54',
+            main: '#77825c',
+            darker: '#676F54',
         },
         'title-background': {
             main: '#dcdbc9',
