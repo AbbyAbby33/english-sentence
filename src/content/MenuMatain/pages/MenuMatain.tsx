@@ -2,19 +2,11 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { styled as muiStyled } from '@mui/material/styles';
 import PageTitle from '../../../shared/components/PageTitle';
 import EsMuiSelect from '../../../shared/components/EsMuiSelect';
+import TopicListTable from '../components/TopicListTable';
+import PatternListTable from '../components/PatternListTable';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -41,7 +33,6 @@ function TabPanel(props: TabPanelProps) {
         </div>
     );
 }
-
 
 function a11yProps(index: number) {
     return {
@@ -73,56 +64,10 @@ const PATTERN_LIST = [
     { id: 'p9999', englishPattern: 'Other', chinesePattern: '其他' }
 ];
 
-/** 新增MUI表格的列資料 */
-function createTableRow(
-    id: string,
-    name: string
-) {
-    const operate =
-        (
-            <div>
-                <EditIcon sx={{ marginRight: '6px' }}></EditIcon>
-                <DeleteIcon></DeleteIcon>
-            </div>
-        );
-    return { id, name, operate };
-}
-
-/** 新增MUI表格的列資料 */
-function createPatternTableRow(
-    id: string,
-    englishPattern: string,
-    chinesePattern: string
-) {
-    const operate =
-        (
-            <div>
-                <EditIcon sx={{ marginRight: '6px' }}></EditIcon>
-                <DeleteIcon></DeleteIcon>
-            </div>
-        );
-    return { id, englishPattern, chinesePattern, operate };
-}
-
-const StyledTableCell = muiStyled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette['title-background'].main,
-        padding: '10px 16px' 
-    }
-}));
-
 export default function MenuMatain() {
 
     const [value, setValue] = React.useState(0);
     const [topic, setTopic] = React.useState('t0000');
-
-    const topicRows = TOPIC_LIST.map(v => {
-        return createTableRow(v.id, v.name);
-    });
-
-    const patternRows = PATTERN_LIST.map(v => {
-        return createPatternTableRow(v.id, v.englishPattern, v.chinesePattern);
-    });
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -131,66 +76,6 @@ export default function MenuMatain() {
     const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTopic(event.target.value);
     };
-
-    const topicList = (
-
-        <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell style={{ width: '70px' }}>編號</StyledTableCell>
-                        <StyledTableCell>主題</StyledTableCell>
-                        <StyledTableCell style={{ width: '90px' }}>操作</StyledTableCell>
-                        {/* <TableCell align="center">操作</TableCell> */}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {topicRows.map((row, i) => (
-                        <TableRow
-                            key={row.id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell>{i + 1}</TableCell>
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell>{row.operate}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
-
-    const patternList = (
-        <TableContainer component={Paper} sx={{ minWidth: '400px' }}>
-            <Table aria-label="simple table" stickyHeader>
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell style={{ width: '70px' }}>編號</StyledTableCell>
-                        <StyledTableCell>句型</StyledTableCell>
-                        <StyledTableCell style={{ width: '90px' }}>操作</StyledTableCell>
-                        {/* <TableCell align="center">操作</TableCell> */}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {patternRows.map((row, i) => (
-                        <TableRow
-                            key={row.id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell>{i + 1}</TableCell>
-                            <TableCell component="th" scope="row">
-                                <p className="english-font-family m0">{row.englishPattern}</p>
-                                {row.chinesePattern}
-                            </TableCell>
-                            <TableCell>{row.operate}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
 
     return (
         <React.Fragment>
@@ -203,7 +88,7 @@ export default function MenuMatain() {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} index={0}>
-                    {topicList}
+                    <TopicListTable topicList={TOPIC_LIST} />
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <Stack spacing={2}>
@@ -214,14 +99,11 @@ export default function MenuMatain() {
                             handleValueChange={handleTopicChange}
                             list={TOPIC_LIST} />
                         <Box sx={{ overflowX: 'scroll', boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)' }}>
-                            {patternList}
+                            <PatternListTable patternList={PATTERN_LIST} />
                         </Box>
                     </Stack>
-
-
                 </TabPanel>
             </Box>
         </React.Fragment>
-
     )
 }
