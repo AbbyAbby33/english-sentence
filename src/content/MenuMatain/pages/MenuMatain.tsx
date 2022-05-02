@@ -9,13 +9,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { styled as muiStyled } from '@mui/material/styles';
 import PageTitle from '../../../shared/components/PageTitle';
+import EsMuiSelect from '../../../shared/components/EsMuiSelect';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -208,20 +207,12 @@ export default function MenuMatain() {
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                     <Stack spacing={2}>
-                        <TextField
-                            sx={{ width: '100%' }}
-                            id="outlined-select-currency"
-                            select
+                        <EsMuiSelect
+                            id="topic-select"
                             label="主題"
                             value={topic}
-                            onChange={handleTopicChange}
-                        >
-                            {TOPIC_LIST.map((option) => (
-                                <MenuItem key={option.id} value={option.id}>
-                                    {option.name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                            handleValueChange={handleTopicChange}
+                            list={TOPIC_LIST} />
                         <Box sx={{ overflowX: 'scroll', boxShadow: '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)' }}>
                             {patternList}
                         </Box>
