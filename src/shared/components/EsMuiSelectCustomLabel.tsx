@@ -19,6 +19,7 @@ export default function EsMuiSelectCustomLabel(props: EsMuiSelectCustomLabelInte
     return (
         <TextField
             id={id}
+            name={id}
             select
             label={label}
             value={value}

@@ -37,15 +37,17 @@ const PATTERN_LIST = [
 
 export default function CreateSentence() {
 
-    const [topic, setTopic] = React.useState('t0000');
-    const [pattern, setPattern] = React.useState('p0000');
+    const [createForm, setCreateForm] = React.useState({
+        topic: 't0000',
+        pattern: 'p0000'
+    });
 
-    const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setTopic(event.target.value);
-    };
-
-    const handlePatternChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setPattern(event.target.value);
+    const handleCreateFormChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setCreateForm({
+            ...createForm,
+            [event.target.name]: event.target.value
+        });
+        console.log('createForm', createForm);
     };
 
     return (
@@ -57,16 +59,16 @@ export default function CreateSentence() {
                     <CardContent sx={{ pb: '5px' }}>
                         <Stack spacing={2}>
                             <EsMuiSelect
-                                id="topic-select"
+                                id="topic"
                                 label="主題"
-                                value={topic}
-                                handleValueChange={handleTopicChange}
+                                value={createForm.topic}
+                                handleValueChange={handleCreateFormChange}
                                 list={TOPIC_LIST} />
                             <EsMuiSelectCustomLabel
-                                id="pattern-select"
+                                id="pattern"
                                 label="句型"
-                                value={pattern}
-                                handleValueChange={handlePatternChange}>
+                                value={createForm.pattern}
+                                handleValueChange={handleCreateFormChange}>
                                 {PATTERN_LIST.map((option) => (
                                     <MenuItem key={option.id} value={option.id}>
                                         <p className="english-font-family m0">{option.englishPattern}</p>
@@ -75,13 +77,15 @@ export default function CreateSentence() {
                                 ))}
                             </EsMuiSelectCustomLabel>
                             <EsMuiTextArea
-                                id="english-sentence-input"
+                                id="englishSentence"
                                 label="英文句子"
-                                rows={6} />
+                                rows={6}
+                                handleValueChange={handleCreateFormChange} />
                             <EsMuiTextArea
-                                id="chinese-sentence-input"
+                                id="chineseSentence"
                                 label="本句中文翻譯"
-                                rows={6} />
+                                rows={6}
+                                handleValueChange={handleCreateFormChange} />
                         </Stack>
                     </CardContent>
                     <CardActions sx={{ flexDirection: 'column' }}>
