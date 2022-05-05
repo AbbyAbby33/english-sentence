@@ -43,6 +43,7 @@ const themeBase = createTheme({
             styleOverrides: {
                 body: {
                     color: 'rgb(0, 0, 0)',
+                    minHeight: 'calc(100vh - 56px)', // for backgroundImage
                     '& .m0': {
                         margin: '0'
                     }
@@ -68,7 +69,8 @@ const theme1 = createTheme(themeBase, {
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    backgroundColor: '#aac5b4',
+                    // backgroundColor: '#aac5b4',
+                    backgroundImage: 'linear-gradient(80deg, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%)',
                     '& .english-font-family': {
                         fontFamily: `'Roboto Mono', 'serif', 'Segoe UI', 'Roboto'`
                     },
@@ -102,7 +104,8 @@ const theme2 = createTheme(themeBase, {
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    backgroundColor: '#F6D0B1',
+                    // backgroundColor: '#F6D0B1',
+                    backgroundImage: 'linear-gradient(220deg, #F6D0B1 0%, #F6D0B1 0%, #fcb69f 21%, #ffecd2 52%, #ff867a 78%, #ff867a 100%)',
                     '& .english-font-family': {
                         fontFamily: `'Kanit', 'serif', 'Segoe UI', 'Roboto'`,
                     },
